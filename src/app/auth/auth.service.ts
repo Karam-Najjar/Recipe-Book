@@ -102,14 +102,11 @@ export class AuthService {
 
       this.fetchRecipesSubscription = this.dataStorageService
         .fetchRecipes()
-        .subscribe(); // ADD
+        .subscribe(() => {
+          this.fetchRecipesSubscription.unsubscribe();
+          console.log('un');
+        }); // ADD
     }
-  }
-
-  isFetchRecipesSubscribed(): boolean {
-    return (
-      this.fetchRecipesSubscription && !this.fetchRecipesSubscription.closed
-    );
   }
 
   logout() {
