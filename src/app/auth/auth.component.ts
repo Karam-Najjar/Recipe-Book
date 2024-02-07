@@ -15,7 +15,7 @@ export class AuthComponent {
   isLoading = false;
   error: string = null;
 
-  onSwichMode() {
+  onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
   }
 
