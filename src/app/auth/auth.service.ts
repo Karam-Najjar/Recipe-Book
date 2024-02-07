@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
@@ -104,7 +104,6 @@ export class AuthService {
         .fetchRecipes()
         .subscribe(() => {
           this.fetchRecipesSubscription.unsubscribe();
-          console.log('un');
         }); // ADD
     }
   }

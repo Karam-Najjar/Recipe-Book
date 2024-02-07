@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-list',
@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
-  subscription: Subscription
+  subscription: Subscription;
 
   constructor(
     private recipeServive: RecipeService,
@@ -23,9 +23,9 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.recipeServive.recipesChanged.subscribe(
       (recipes: Recipe[]) => {
-        this.recipes = recipes
+        this.recipes = recipes;
       }
-    )
+    );
     this.recipes = this.recipeServive.getRecipes();
   }
 
@@ -34,6 +34,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe()
+    this.subscription.unsubscribe();
   }
 }
