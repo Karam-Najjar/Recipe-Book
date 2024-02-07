@@ -6,6 +6,7 @@ import { BehaviorSubject, Subscription, throwError } from 'rxjs';
 
 import { User } from './user.model';
 import { DataStorageService } from '../shared/data-storage.service'; // ADD
+import { environment } from 'src/environments/environment.prod';
 
 export interface AuthResponseData {
   kind: string;
@@ -32,7 +33,8 @@ export class AuthService {
   signup(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAWzpCJRdB4ehHMtfC0_haLNClsndhJDWM',
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
+          environment.fireBaseAPIKey,
         {
           email: email,
           password: password,
@@ -55,7 +57,8 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAWzpCJRdB4ehHMtfC0_haLNClsndhJDWM',
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
+          environment.fireBaseAPIKey,
         {
           email: email,
           password: password,
